@@ -1,15 +1,42 @@
-function Comic() {
+import {useState} from "react"
 
+
+
+function Comic({
+  image_url,
+  issue,
+  title,
+  id,
+  onRemoveComic
+}) {
+
+  const [ showImg , setShowImg ] = useState(true)
+
+  function handleToggleView(){
+    setShowImg(!showImg)
+  }
+
+  function handleDeleteClick(){
+    // console.log(id)
+    fetch(`http://localhost:8008/comics/${id}` , {
+      method: "DELETE"
+    })
+    onRemoveComic(id)
+}
   return (
     <div className="comic-item">
 
-      {/* The image should render if the details aren't displayed */}
-      <img src={"#"} alt={"Comic Issue Image"} />
+     { showImg ? 
 
-      {/* The details should render if the image isn't displayed */}
-      <h3>{"Title"}</h3>
-      <h4>{"Issue No."}</h4>
-      <button>Remove</button>
+      <img src={image_url} alt={title} onClick={handleToggleView} />
+
+     :
+      <>
+        <h3 onClick={handleToggleView}>{title}</h3>
+        <h4>{issue}</h4>
+        <button onClick={handleDeleteClick}  >Remove</button>  
+      </>
+      }
 
     </div>
   )

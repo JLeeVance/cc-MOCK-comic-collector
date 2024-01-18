@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "json-server": "^1.0.0-alpha.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0"
   },
   "scripts": {
     "start": "PORT=8000 react-scripts start",
-    "server": "json-server --watch db.json -p 8004"
+    "server": "json-server --watch db.json -p 8008"
   },
   "eslintConfig": {
     "extends": [
